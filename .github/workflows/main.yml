@@ -1,30 +1,36 @@
 name: Build and Deploy
 on:
   push:
-    paths: ["source/**", "themes/**", ".github/workflows/main.yml", "_config.yml"]
+    branches:
+      - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Build
-        uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: Set Node.js 20 (LTS)
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 對齊你本機目前能正常編譯的 Node.js 20 環境
+      - name: Set Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - uses: borales/actions-yarn@v4
-        with:
-          cmd: install
-      - name: Build Hexo 
+          cache: 'npm' # 自動幫你的 npm 做快取快遞
+
+      # 改用 npm 嚴格安裝 package-lock.json 裡宣告的套件，確保雲端跟本機環境一模一樣
+      - name: Install Dependencies
+        run: npm install
+
+      # 執行清除並編譯
+      - name: Build Hexo
         run: |
           npx hexo clean
           npx hexo generate
-      - name: Deploy 
-        uses: peaceiris/actions-gh-pages@v3
+
+      # 部署至 gh-pages 分支
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
