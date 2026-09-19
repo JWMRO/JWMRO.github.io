@@ -105,7 +105,7 @@ theme: Fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repo: https://github.com/JWMRO/JWMRO.git.io-blog.git
+  repo: https://github.com/JWMRO/JWMRO.github.io.git
   branch: main
 
 
