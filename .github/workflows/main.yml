@@ -12,10 +12,10 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: Set Node.js 20
+      - name: Set Node.js 24
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 24
       - uses: borales/actions-yarn@v4
         with:
           cmd: install
