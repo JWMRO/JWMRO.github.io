@@ -19,10 +19,11 @@ jobs:
       - uses: borales/actions-yarn@v4
         with:
           cmd: install
-      - uses: borales/actions-yarn@v4
-        with:
-          cmd: build
-      - name: Deploy
+      - name: Build Hexo 
+        run: |
+          npx hexo clean
+          npx hexo generate
+      - name: Deploy 
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
