@@ -116,6 +116,34 @@ $use-seo = hexo-config('seo');
   }
 }
 
+//======================
+//增加圖片(bg)
+//======================
+
+body:before { #在 body 使用 before 偽元素繼承原本的屬性
+  content: ""; # 沒有要插入的內容
+  display: block; # 元素會以區塊方式呈現
+  position: fixed; # 固定定位的元素會相對於瀏覽器視窗來定位，就是即便頁面捲動，它還是會固定在相同的位置
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  # 填滿
+  z-index: -10;
+  # z-index 本身代表座標的 z 方向，也就是元素的堆疊順序。這裡的使用如果為 >0 就代表背景圖在文字的上方，<0 則表示背景圖在文字的下方。而數值代表距離。
+  background: url(https://cdn.jsdelivr.net/gh/JWMRO/photo@main/my-bg.webp) no-repeat center center;
+  # 附上圖片的連結給 background
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  # 以上要注意由上往下的順序
+  # -webkit- 是 Chrome, Safari 的私有屬性
+  # -moz- 是 Firefox 的私有屬性
+  # -o- 是 opera 的私有屬性
+  # 補充: -ms- 是 IE 的私有屬性
+}
+
 // ==================================================
 // Headers.
 // ==================================================
@@ -218,27 +246,4 @@ $use-seo = hexo-config('seo');
   .pagination {
     margin: $content-mobile-padding 0 0;
   }
-}
-body:before { #在 body 使用 before 偽元素繼承原本的屬性
-  content: ""; # 沒有要插入的內容
-  display: block; # 元素會以區塊方式呈現
-  position: fixed; # 固定定位的元素會相對於瀏覽器視窗來定位，就是即便頁面捲動，它還是會固定在相同的位置
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  # 填滿
-  z-index: -10;
-  # z-index 本身代表座標的 z 方向，也就是元素的堆疊順序。這裡的使用如果為 >0 就代表背景圖在文字的上方，<0 則表示背景圖在文字的下方。而數值代表距離。
-  background: url(https://cdn.jsdelivr.net/gh/JWMRO/photo@main/my-bg.webp) no-repeat center center;
-  # 附上圖片的連結給 background
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  # 以上要注意由上往下的順序
-  # -webkit- 是 Chrome, Safari 的私有屬性
-  # -moz- 是 Firefox 的私有屬性
-  # -o- 是 opera 的私有屬性
-  # 補充: -ms- 是 IE 的私有屬性
 }
