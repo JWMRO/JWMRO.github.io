@@ -149,6 +149,58 @@ $use-seo = hexo-config('seo');
   }
 
   .posts-expand {
+        // Components inside Posts.
+    .post-button {
+      margin-top: ($content-tablet-padding * 2);
+    }
+  }
+
+  .post-block {
+    border-radius: $border-radius;
+    // Rewrite shadows & borders because all blocks have offsets.
+    box-shadow: $box-shadow;
+    // Inside posts blocks content padding (default 40px).
+    padding: ($content-tablet-padding * 2);
+  }
+
+  // Only if blocks are siblings need bottom margin (homepage).
+  .post-block + .post-block {
+    margin-top: $content-tablet-padding;
+  }
+
+  .comments {
+    margin-top: $content-tablet-padding;
+    padding: $content-tablet-padding ($content-tablet-padding * 2);
+    // padding: initial;
+    // padding-top: $content-tablet-padding;
+  }
+
+  .pagination {
+    margin: $content-tablet-padding 0 0;
+  }
+}
+
+// ==================================================
+// < 767px
+// ==================================================
++mobile() {
+  // Posts in blocks.
+  .content-wrap {
+    padding: $content-mobile-padding;
+  }
+
+  .posts-expand {
+    // Components inside Posts.
+    .post-button {
+      margin: $sidebar-offset 0;
+    }
+  }
+
+  .post-block {
+    border-radius: $border-radius;
+    // Rewrite shadows & borders because all blocks have offsets.
+    box-shadow: $box-shadow;
+    min-height: auto;
     // Inside posts blocks content padding (default 40px).
     padding: $sidebar-offset;
   }
