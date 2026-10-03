@@ -25,7 +25,14 @@ categories:
 
 目前在學:
 
-**hexo** 和 **Python**
+- 語言 :  
+  - Python
+  - JavaScript
+- 部落格框架 :
+  - Hexo
+- 網頁相關 :
+  - HTML / CSS
+
 
 ## 關於以後
 
